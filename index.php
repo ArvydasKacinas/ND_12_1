@@ -59,28 +59,51 @@
     $klientai = [$klientas1,$klientas2,$klientas3,$klientas4,$klientas5,$klientas6,$klientas7];
 ?>
 
+<div class="row ml-1">
+    <div class="form col-lg-4 center-block">
+        <form method="POST" action="index.php">
+            <div class="mb-3">
+                <label class="form-label">ID</label>
+                <input class="form-control" name="id"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Vardas</label>
+                <input class="form-control" name="vardas"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Amžius</label>
+                <input class="form-control" name="amzius"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Profesija</label>
+                <input class="form-control" name="profesija"/>
+            </div>
 
-<div class="w-75 p-3">
-    <table class="table">
-        <tr>
-            <th>ID</th>
-            <th>Vardas</th>
-            <th>Amžius</th>
-            <th>Profesija</th>
-        </tr>
-        <?php
-            foreach($klientai as $klientas) {
-                echo "<tr>";
-                    echo "<td>".$klientas["id"]."</td>";
-                    echo "<td>".$klientas["vardas"]."</td>";
-                    echo "<td>".$klientas["amzius"]."</td>";
-                    echo "<td>".$klientas["profesija"]."</td>";
-                echo "</tr>";
-            };
-        ?>
-    </table>
+            <button class="btn btn-info" type="submit" name="patvirtinti">Įrašyti</button>
+        </form>
+    </div>
+
+    <div class="col-lg-8 center-block">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Vardas</th>
+                <th>Amžius</th>
+                <th>Profesija</th>
+            </tr>
+            <?php
+                foreach($klientai as $klientas) {
+                    echo "<tr>";
+                        echo "<td>".$klientas["id"]."</td>";
+                        echo "<td>".$klientas["vardas"]."</td>";
+                        echo "<td>".$klientas["amzius"]."</td>";
+                        echo "<td>".$klientas["profesija"]."</td>";
+                    echo "</tr>";
+                };
+            ?>
+        </table>
+    </div>
 </div>
-
 
 
 </body>
