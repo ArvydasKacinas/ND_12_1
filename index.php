@@ -57,6 +57,8 @@
     );
 
     $klientai = [$klientas1,$klientas2,$klientas3,$klientas4,$klientas5,$klientas6,$klientas7];
+    $klientaiEnc=json_encode($klientai);
+    setcookie("klientai",$klientaiEnc,time()+86400,'/');
 ?>
 
 <div class="row ml-1">
@@ -83,6 +85,27 @@
         </form>
     </div>
 
+    <?php 
+    if(isset($_POST["patvirtinti"])) {
+        $id = $_POST["id"];
+        $vardas = $_POST["vardas"];
+        $amzius = $_POST["amzius"];
+        $profesija = $_POST["profesija"];
+
+        $klientaiCookies = $_COOKIE["klientai"];    
+        $klientaiPhp = json_decode($klientaiCookies, true);
+        $klientaiPhp[] = array(
+            "id" => $id,
+            "vardas" =>  $vardas,
+            "amzius" => $amzius,
+            "profesija" => $profesija
+        );
+        $klientaiCookies = json_encode($klientaiPhp);
+        setcookie("klientai", $klientaiCookies, time() + 86400, '/' );
+        header('location: index.php');
+    }
+?>
+
     <div class="col-lg-8 center-block">
         <table class="table">
             <tr>
@@ -92,6 +115,7 @@
                 <th>Profesija</th>
             </tr>
             <?php
+                $klientai = json_decode($_COOKIE["klientai"], true);
                 foreach($klientai as $klientas) {
                     echo "<tr>";
                         echo "<td>".$klientas["id"]."</td>";
